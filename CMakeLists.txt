@@ -22,3 +22,18 @@ endif()
 add_subdirectory(src)
 add_subdirectory(app/cli)
 add_subdirectory(app/gui)
+
+include(GNUInstallDirs)
+
+# Instalar librería core (SHARED -> quedará en lib/bin)
+install(TARGETS dragon2_core
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+# Instalar GUI
+install(TARGETS dragon2_gui
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+# (Opcional) Instalar CLI
+# install(TARGETS dragon2_cli RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

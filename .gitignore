@@ -3,3 +3,4 @@
 /CMakeUserPresets.json
 *.CMakeUserPresets
 *.log
+/dist/
