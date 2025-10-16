@@ -1,0 +1,2 @@
+add_executable(dragon2_cli main.cpp)
+target_link_libraries(dragon2_cli PRIVATE dragon2_core)
