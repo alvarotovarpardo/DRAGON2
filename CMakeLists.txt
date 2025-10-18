@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(DRAGON2 LANGUAGES CXX)
+project(DRAGON2 LANGUAGES CXX Fortran)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -16,11 +16,16 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # MSVC flags útiles
 if (MSVC)
-  add_compile_options(/W4 /permissive- /Zc:__cplusplus)
+  add_compile_options(
+    $<$<COMPILE_LANGUAGE:CXX>:/W4>
+    $<$<COMPILE_LANGUAGE:CXX>:/permissive->
+    $<$<COMPILE_LANGUAGE:CXX>:/Zc:__cplusplus>
+  )
 endif()
 
 add_subdirectory(src)
 add_subdirectory(app/cli)
+add_subdirectory(fortran)
 add_subdirectory(app/gui)
 
 include(GNUInstallDirs)

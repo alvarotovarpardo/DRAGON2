@@ -1,6 +1,7 @@
 # Librería central en C++
 add_library(dragon2_core STATIC
     core/hello.cpp
+    ../src/core/fwrap.cpp 
 )
 
 target_include_directories(dragon2_core
@@ -8,5 +9,4 @@ target_include_directories(dragon2_core
         ${CMAKE_SOURCE_DIR}/include
 )
 
-# Aquí, en el futuro, añadiremos más fuentes C++ del proyecto.
-# De momento, EXCLUIMOS Fortran/Autotools por portabilidad en Windows.
+target_link_libraries(dragon2_core PUBLIC dragon2_fortran)
