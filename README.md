@@ -51,6 +51,19 @@ For MAC users:
 
 `./startMAC.sh`
 
+## 2b) CMake + Conan workflow
+
+If you want the modern CMake build, run this from the repository root:
+
+`conan profile detect --force`
+`conan install . -of build --build=missing`
+`cmake --preset conan-default`
+`cmake --build --preset conan-default`
+
+Conan provides GSL and CFITSIO, and CMake builds the project without needing the Autotools flow.
+
+The Autotools path still exists, but it is no longer required for the CMake workflow.
+
 ## 3) configure
 
 Launch configure as in this example:
