@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(DRAGON2 VERSION 3.0.0 LANGUAGES CXX Fortran)
+project(DRAGON2 VERSION 3.0.0 LANGUAGES C CXX Fortran)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -8,7 +8,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(OpenMP REQUIRED)
 find_package(GSL REQUIRED)
-find_package(CFITSIO REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(CFITSIO REQUIRED IMPORTED_TARGET cfitsio)
 
 add_library(tinyxml STATIC
     tinystr.cc
@@ -48,6 +49,7 @@ add_library(dragon_core STATIC
 
 target_include_directories(dragon_core PUBLIC 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 )
 
 target_link_libraries(dragon_core PUBLIC
@@ -55,7 +57,7 @@ target_link_libraries(dragon_core PUBLIC
     cparamlib
     OpenMP::OpenMP_CXX
     GSL::gsl
-    CFITSIO::CFITSIO 
+    PkgConfig::CFITSIO 
 )
 
 add_executable(dragon_cli main.cc)
