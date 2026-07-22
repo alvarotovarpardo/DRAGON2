@@ -92,10 +92,10 @@
 #undef LT_OBJDIR
 
 /* Define the maximum number of CPU to be used */
-#undef NUMTHREADS
+// #undef NUMTHREADS
 
 /* Define the maximum number of CPU to be used */
-#undef OMP_NUM_THREADS
+// #undef OMP_NUM_THREADS
 
 /* Name of package */
 #undef PACKAGE
